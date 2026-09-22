@@ -12,13 +12,5 @@ def get_configurations():
 
 
 def get_build_prefix(env):
-    if not env.msvc:
-        return []
-    batch_file = methods.find_visual_c_batch_file(env)
-    return [
-        "cmd /V /C",
-        "set &quot;plat=$(PlatformTarget)&quot;",
-        "^&amp; (if &quot;$(PlatformTarget)&quot;==&quot;x64&quot; (set &quot;plat=x86_amd64&quot;))",
-        f"^&amp; call &quot;{batch_file}&quot; !plat!",
-        "^&amp;",
-    ]
+    # SCons 会自动检测 MSVC，避免 VS 工程额外调用 vcvars*.bat 时受 PATH 影响。
+    return []

@@ -1,0 +1,1 @@
+scons platform=windows target=editor dev_build=yes d3d12=no
